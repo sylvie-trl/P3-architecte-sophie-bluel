@@ -4,53 +4,73 @@ const reponse = await fetch("http://localhost:5678/api/works");
 const projets = await reponse.json();
 
 const galerie = document.querySelector(".galerie");
+const portfolio = document.getElementById("portfolio");
 
-projets.forEach((projet) => {
-  const figure = document.createElement("figure");
+function afficherProjets(liste) {
+  galerie.innerHTML = ""; // Vider la galerie avant d'afficher les projets filtrés
+  liste.forEach((projet) => {
+    const figure = document.createElement("figure");
 
-  const image = document.createElement("img");
-  image.src = projet.imageUrl;
-  image.alt = projet.title;
+    const image = document.createElement("img");
+    image.src = projet.imageUrl;
+    image.alt = projet.title;
 
-  const caption = document.createElement("figcaption");
-  caption.textContent = projet.title;
+    const caption = document.createElement("figcaption");
+    caption.textContent = projet.title;
 
-  figure.appendChild(image);
-  figure.appendChild(caption);
-  galerie.appendChild(figure);
-});
+    figure.appendChild(image);
+    figure.appendChild(caption);
+    galerie.appendChild(figure);
+  });
+}
+
+afficherProjets(projets);
 
 // Ajout dynamique des 4 boutons de filtres
 
 const divFiltres = document.createElement("div");
 divFiltres.classList.add("filtres");
 
-const btnFiltreTous = document.createElement("button");
-btnFiltreTous.textContent = "Tous";
-btnFiltreTous.classList.add("filtre-tous");
+function creerBtnFiltre(categorie) {
+  const btnFiltre = document.createElement("button");
+  btnFiltre.textContent = categorie.name;
+  btnFiltre.dataset.categoryId = categorie.id;
+  btnFiltre.classList.add("filtre");
+  divFiltres.appendChild(btnFiltre);
 
-const btnFiltreObjets = document.createElement("button");
-btnFiltreObjets.textContent = "Objets";
-btnFiltreObjets.classList.add("filtre-objets");
+  if (categorie.id === 0) {
+    btnFiltre.classList.add("active");
+  }
+  btnFiltre.addEventListener("click", () => {
+    // Retirer la classe 'active' de tous les boutons
+    document.querySelectorAll(".filtre").forEach((btn) => {
+      btn.classList.remove("active");
+    });
+    // Ajouter la classe 'active' au bouton cliqué
+    btnFiltre.classList.add("active");
 
-const btnFiltreAppartements = document.createElement("button");
-btnFiltreAppartements.textContent = "Appartements";
-btnFiltreAppartements.classList.add("filtre-appartements");
+    if (categorie.id === 0) {
+      afficherProjets(projets);
+    } else {
+      const projetsFiltres = projets.filter(
+        (projet) => projet.categoryId === categorie.id
+      );
+      afficherProjets(projetsFiltres);
+    }
+  });
+}
 
-const btnFiltreHotelRestaurant = document.createElement("button");
-btnFiltreHotelRestaurant.textContent = "Hôtels & restaurants";
-btnFiltreHotelRestaurant.classList.add("filtre-hotels-restaurants");
+async function afficherFiltres() {
+  const reponseCategories = await fetch("http://localhost:5678/api/categories");
+  const categories = await reponseCategories.json();
 
-divFiltres.appendChild(btnFiltreTous);
-divFiltres.appendChild(btnFiltreObjets);
-divFiltres.appendChild(btnFiltreAppartements);
-divFiltres.appendChild(btnFiltreHotelRestaurant);
+  categories.unshift({ id: 0, name: "Tous" }); // Ajout de la catégorie "Tous"
 
-const portfolio = document.getElementById("portfolio");
+  categories.forEach((categorie) => {
+    creerBtnFiltre(categorie);
+  });
 
-portfolio.insertBefore(divFiltres, galerie);
+  portfolio.insertBefore(divFiltres, galerie);
+}
 
-// Récupération via l'API des catégories des projets
-
-// const reponseCategories = await fetch("http://localhost:5678/api/categories");
-// const categories = await reponseCategories.json();
+afficherFiltres();

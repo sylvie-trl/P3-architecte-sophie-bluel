@@ -280,7 +280,7 @@ footer {
   margin: 60px 0;
 }
 
-button[class^="filtre-"] {
+button {
   border-radius: 60px;
   border: 1px solid #1d6154;
   background-color: #fffef8;
@@ -294,7 +294,7 @@ button[class^="filtre-"] {
 }
 
 /* à ajouter dans le .js quand on sélectionne un filtre - par défaut, on a le bouton "tous" sélectionné */
-.filtre-actif {
+.active {
   background-color: #1d6154;
   color: #fff;
 }
