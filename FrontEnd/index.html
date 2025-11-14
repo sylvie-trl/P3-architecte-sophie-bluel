@@ -13,6 +13,7 @@
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
     <script type="module" src="scripts.js" defer></script>
+    <script type="module" src="login.js" defer></script>
   </head>
   <body>
     <header>
@@ -21,7 +22,7 @@
         <ul>
           <li>projets</li>
           <li>contact</li>
-          <li><a href="loginPage.html">login</a></li>
+          <li><a href="loginPage.html" id="nav-auth">login</a></li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
@@ -51,7 +52,10 @@
         </article>
       </section>
       <section id="portfolio">
-        <h2>Mes Projets</h2>
+        <div class="title">
+          <h2>Mes Projets</h2>
+          <div id="btnEdition"></div>
+        </div>
         <div class="galerie"></div>
       </section>
       <section id="contact">

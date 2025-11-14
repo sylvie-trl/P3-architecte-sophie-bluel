@@ -202,8 +202,8 @@ li:hover {
 }
 #portfolio h2 {
   text-align: center;
-  margin-bottom: 1em;
 }
+
 .galerie {
   width: 100%;
   display: grid;
@@ -323,4 +323,32 @@ nav li a:hover {
   color: #3d3d3d;
   display: block;
   text-align: center;
+}
+
+#error-message {
+  color: red;
+  margin-top: 15px;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#btnEdition {
+  margin-left: 40px;
+}
+
+.btnEdition {
+  border: none;
+  background: url("/FrontEnd/assets/icons/icone-modifier.svg") no-repeat left
+    center;
+  background-size: 16px;
+  padding-left: 24px;
+  cursor: pointer;
+  color: #000000;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
 }

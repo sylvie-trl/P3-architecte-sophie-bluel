@@ -74,3 +74,42 @@ async function afficherFiltres() {
 }
 
 afficherFiltres();
+
+// Ajout bouton Edition en mode connecté
+
+const token = sessionStorage.getItem("token");
+const btnEdition = document.getElementById("btnEdition");
+
+if (token && btnEdition) {
+  const bouton = document.createElement("button");
+  bouton.textContent = "modifier";
+  bouton.classList.add("btnEdition");
+  bouton.addEventListener("click", () => {
+    sessionStorage.removeItem("token");
+    // window.location.reload(); il faudra lancer la modale à partir de ce bouton
+  });
+  btnEdition.appendChild(bouton);
+}
+
+// Gestion du lien Login/Logout dans la navbar
+
+const navAuth = document.getElementById("nav-auth");
+
+if (token) {
+  // ajout du bandeau noir en mode édition
+  const header = document.querySelector("header");
+  const bandeauEdition = document.createElement("div");
+  bandeauEdition.textContent = "Mode édition";
+  bandeauEdition.classList.add("bandeau-edition");
+  header.insertBefore(bandeauEdition, header.firstChild);
+
+  // Change le texte et le comportement
+  navAuth.textContent = "logout";
+  navAuth.href = "#"; // évite de rediriger vers login.html
+
+  navAuth.addEventListener("click", (event) => {
+    event.preventDefault();
+    sessionStorage.removeItem("token"); // supprime le token
+    window.location.reload(); // recharge la page → retour à "Login"
+  });
+}

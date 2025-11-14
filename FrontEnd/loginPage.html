@@ -12,7 +12,7 @@
     />
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
-    <script type="module" src="scripts.js" defer></script>
+    <script type="module" src="login.js" defer></script>
   </head>
   <body>
     <header>
@@ -32,13 +32,14 @@
         <form action="#" method="post" id="login-form">
           <label for="email">E-mail</label>
           <input type="text" id="email" name="email" required />
-
           <label for="password">Mot de passe</label>
           <input type="password" id="password" name="password" required />
 
           <button type="submit">Se connecter</button>
         </form>
         <a class="lien-generer-mdp" href="#">Mot de passe oublié</a>
+
+        <p id="error-message"></p>
       </section>
     </main>
   </body>
