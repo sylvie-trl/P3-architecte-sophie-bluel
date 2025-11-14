@@ -219,34 +219,42 @@ li:hover {
   width: 50%;
   margin: auto;
 }
-#contact > * {
+
+#contact > *,
+#login-section > * {
   text-align: center;
 }
-#contact h2 {
+#contact h2,
+#login-section h2 {
   margin-bottom: 20px;
 }
-#contact form {
+#contact form,
+#login-form {
   text-align: left;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
 }
 
-#contact input {
+#contact input,
+#login-form input {
   height: 50px;
   font-size: 1.2em;
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-#contact label {
+#contact label,
+#login-form label {
   margin: 2em 0 1em 0;
 }
-#contact textarea {
+#contact textarea,
+#login-form textarea {
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"] {
+input[type="submit"],
+button[type="submit"] {
   font-family: "Syne";
   font-weight: 700;
   color: white;
@@ -292,9 +300,27 @@ button {
   flex-shrink: 0;
   padding: 9px 20px;
 }
-
-/* à ajouter dans le .js quand on sélectionne un filtre - par défaut, on a le bouton "tous" sélectionné */
 .active {
   background-color: #1d6154;
   color: #fff;
+}
+
+#login-section {
+  width: 33%;
+  margin: auto;
+}
+
+nav li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+nav li a:hover {
+  font-weight: 600;
+}
+
+.lien-generer-mdp {
+  color: #3d3d3d;
+  display: block;
+  text-align: center;
 }
