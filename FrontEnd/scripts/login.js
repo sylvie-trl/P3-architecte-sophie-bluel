@@ -17,6 +17,7 @@ formulaireConnexion.addEventListener("submit", async (event) => {
 
     if (!reponse.ok) {
       const errorData = await reponse.json();
+
       errorMessage.textContent =
         errorData.message || "Erreur dans l'identifiant ou le mot de passe";
       throw new Error(

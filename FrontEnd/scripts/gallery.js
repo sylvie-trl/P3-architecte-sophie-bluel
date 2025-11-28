@@ -73,11 +73,14 @@ async function afficherFiltres() {
   portfolio.insertBefore(divFiltres, galerie);
 }
 
-afficherFiltres();
-
 // Ajout bouton Edition en mode connecté
 
 const token = sessionStorage.getItem("token");
+
+if (!token) {
+  afficherFiltres();
+}
+
 const btnEdition = document.getElementById("btnEdition");
 
 if (token && btnEdition) {
@@ -97,11 +100,8 @@ const navAuth = document.getElementById("nav-auth");
 
 if (token) {
   // ajout du bandeau noir en mode édition
-  const header = document.querySelector("header");
-  const bandeauEdition = document.createElement("div");
-  bandeauEdition.textContent = "Mode édition";
-  bandeauEdition.classList.add("bandeau-edition");
-  header.insertBefore(bandeauEdition, header.firstChild);
+  const bandeauEdition = document.getElementById("adminBandeau");
+  bandeauEdition.classList.add("edition-active");
 
   // Change le texte et le comportement
   navAuth.textContent = "logout";
@@ -109,7 +109,11 @@ if (token) {
 
   navAuth.addEventListener("click", (event) => {
     event.preventDefault();
-    sessionStorage.removeItem("token"); // supprime le token
-    window.location.reload(); // recharge la page → retour à "Login"
+    sessionStorage.removeItem("token");
+    window.location.reload();
   });
+
+  // Ajout margin titre Mes Projets
+  const title = document.getElementById("title");
+  title.classList.add("edition");
 }
