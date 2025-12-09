@@ -396,20 +396,25 @@ nav li a:hover {
 }
 
 .modal-content {
-  /* display: flex;
-  flex-direction: column; */
+  display: flex;
+  flex-direction: column;
   position: relative;
   background: white;
   padding: 20px;
   border-radius: 10px;
-  max-width: 630px;
+  width: 630px;
+  height: 688px;
   margin: auto;
   gap: 5px;
 }
 
 .modal-gallery {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   flex-wrap: wrap;
+  margin: 0 auto;
+  justify-content: center;
+  width: 420px;
 }
 
 .modal-close {
@@ -418,42 +423,116 @@ nav li a:hover {
   right: 10px;
   border: none;
   justify-self: left;
+  cursor: pointer;
 }
 
 .title-modal {
   text-align: center;
+  font-family: "Work Sans", sans-serif;
   font-size: 26px;
-  font-weight: 600;
+  font-weight: 400;
   color: #000;
   margin-top: 60px;
   margin-bottom: 40px;
 }
 .modal-figure {
   position: relative;
+  padding: 4.5px 4.5px 22px 4.5px;
 }
 
 .delete-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
   background-color: #000;
   border-radius: 2px;
   padding: 0;
   position: absolute;
   z-index: 2;
-  right: 5px;
-  top: 5px;
+  right: 7px;
+  top: 9px;
+  cursor: pointer;
 }
 
 .delete-btn img {
   width: 9px;
   background-color: #000;
-  padding: 2px;
+  padding: 3px 4px;
+  border-radius: 2px;
 }
 
 .modal-img {
   width: 78px;
 }
 
+.modal-separator {
+  width: 420px;
+  height: 1px;
+  background-color: #b3b3b3;
+  margin: 40px auto;
+}
+
 .add-project-btn {
   background-color: #1d6154;
   color: #fff;
+  width: 237px;
+  height: 36px;
+  margin: 40px auto 20px auto;
+  cursor: pointer;
+}
+
+#add-project-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.image-upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  /* text-align: left; */
+  background-color: #e8f1f6;
+  border-radius: 8px;
+}
+
+/* #add-project-form label {
+  text-align: left;
+} */
+
+.custom-file-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-picture {
+  cursor: pointer;
+  border-radius: 50px;
+  background: #cbd6dc;
+  border: none;
+  font-size: 14px;
+  height: 36px;
+  margin: 10px 0;
+}
+
+.custom-file-upload .upload-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+.image-upload-container input[type="file"] {
+  display: none;
+}
+
+.image-upload-container p {
+  font-size: 12px;
+  color: #666;
+  margin-top: 5px;
 }

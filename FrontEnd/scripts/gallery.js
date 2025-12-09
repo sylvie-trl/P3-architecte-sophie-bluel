@@ -1,4 +1,4 @@
-export const token = sessionStorage.getItem("token");
+export const token = localStorage.getItem("token");
 
 // Récupération et affichage des projets sur la page d'Accueil
 export async function fetchProjets() {
@@ -74,45 +74,11 @@ export async function afficherFiltres(projets) {
   portfolio.insertBefore(divFiltres, galerie);
 }
 
-// Ajout bouton Edition en mode connecté
-
-// if (!token) {
-//   afficherFiltres();
-// }
-
-// const btnEdition = document.getElementById("btnEdition");
-
-// if (token && btnEdition) {
-//   const bouton = document.createElement("button");
-//   bouton.textContent = "modifier";
-//   bouton.classList.add("btnEdition");
-//   bouton.addEventListener("click", () => {
-//     sessionStorage.removeItem("token");
-//     // window.location.reload(); il faudra lancer la modale à partir de ce bouton
-//   });
-//   btnEdition.appendChild(bouton);
-// }
-
-// // Gestion du lien Login/Logout dans la navbar
-
-// const navAuth = document.getElementById("nav-auth");
-
-// if (token) {
-//   // ajout du bandeau noir en mode édition
-//   const bandeauEdition = document.getElementById("adminBandeau");
-//   bandeauEdition.classList.add("edition-active");
-
-//   // Change le texte et le comportement
-//   navAuth.textContent = "logout";
-//   navAuth.href = "#"; // évite de rediriger vers login.html
-
-//   navAuth.addEventListener("click", (event) => {
-//     event.preventDefault();
-//     sessionStorage.removeItem("token");
-//     window.location.reload();
-//   });
-
-//   // Ajout margin titre Mes Projets
-//   const title = document.getElementById("title");
-//   title.classList.add("edition");
-// }
+export async function refreshGallery() {
+  try {
+    const projets = await fetchProjets();
+    afficherProjets(projets);
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour de la galerie :", error);
+  }
+}

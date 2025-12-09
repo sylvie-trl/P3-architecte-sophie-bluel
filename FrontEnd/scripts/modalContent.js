@@ -1,0 +1,60 @@
+// Galerie
+export function getModalContent(projets) {
+  let contentHTML = `
+    <button class="modal-close">
+      <img src="./assets/icons/xmark.svg"/>
+    </button>
+    <h2 class="title-modal">Galerie Photo</h2>
+    <div class="modal-gallery">`;
+
+  projets.forEach((projet) => {
+    contentHTML += `
+      <figure class="modal-figure">
+        <img src="${projet.imageUrl}" alt="${projet.title}" class="modal-img" />
+        <button class="delete-btn" data-id="${projet.id}" title="Supprimer">
+          <img src="./assets/icons/trashIcon.svg"/>
+        </button>
+      </figure>`;
+  });
+
+  contentHTML += `</div>`;
+  contentHTML += `<div class="modal-separator"/></div>`;
+  contentHTML += `<button id="add-project-btn" class="add-project-btn">Ajouter une photo</button>`;
+
+  return contentHTML;
+}
+
+// Formulaire ajout projet
+export function getModalAddFormContent() {
+  return `
+    <button class="modal-return">
+      <img src="./assets/icons/arrow-left.svg"/>
+    </button>
+    <button class="modal-close">
+      <img src="./assets/icons/xmark.svg"/>
+    </button>
+    <h2 class="title-modal">Ajout photo</h2>
+    <form id="add-project-form">
+        <div class="image-upload-container">
+            <label for="image" class="custom-file-upload">
+                <svg xmlns="http://www.w3.org/2000/svg" width="69" height="60" viewBox="0 0 69 60" fill="none">
+                <path d="M59.6207 6.38793C60.7918 6.38793 61.75 7.34612 61.75 8.51724V51.0768L61.0846 50.2118L42.9855 26.7894C42.3866 26.0042 41.4417 25.5517 40.4569 25.5517C39.4721 25.5517 38.5405 26.0042 37.9283 26.7894L26.8825 41.0824L22.8235 35.3998C22.2247 34.5614 21.2665 34.069 20.2284 34.069C19.1904 34.069 18.2322 34.5614 17.6334 35.4131L6.9868 50.3183L6.38793 51.1434V51.1034V8.51724C6.38793 7.34612 7.34612 6.38793 8.51724 6.38793H59.6207ZM8.51724 0C3.81945 0 0 3.81945 0 8.51724V51.1034C0 55.8012 3.81945 59.6207 8.51724 59.6207H59.6207C64.3185 59.6207 68.1379 55.8012 68.1379 51.1034V8.51724C68.1379 3.81945 64.3185 0 59.6207 0H8.51724ZM19.1638 25.5517C20.0027 25.5517 20.8333 25.3865 21.6083 25.0655C22.3834 24.7444 23.0876 24.2739 23.6807 23.6807C24.2739 23.0876 24.7444 22.3834 25.0655 21.6083C25.3865 20.8333 25.5517 20.0027 25.5517 19.1638C25.5517 18.3249 25.3865 17.4943 25.0655 16.7192C24.7444 15.9442 24.2739 15.24 23.6807 14.6468C23.0876 14.0537 22.3834 13.5831 21.6083 13.2621C20.8333 12.9411 20.0027 12.7759 19.1638 12.7759C18.3249 12.7759 17.4943 12.9411 16.7192 13.2621C15.9442 13.5831 15.24 14.0537 14.6468 14.6468C14.0537 15.24 13.5831 15.9442 13.2621 16.7192C12.9411 17.4943 12.7759 18.3249 12.7759 19.1638C12.7759 20.0027 12.9411 20.8333 13.2621 21.6083C13.5831 22.3834 14.0537 23.0876 14.6468 23.6807C15.24 24.2739 15.9442 24.7444 16.7192 25.0655C17.4943 25.3865 18.3249 25.5517 19.1638 25.5517Z" fill="#B9C5CC"/>
+                </svg>
+                <button class="add-picture">+ Ajouter photo</button>
+                <p>jpg, png : 4Mo max</p>
+            </label>
+            <input type="file" id="image" name="image" accept="image/png, image/jpg" required />
+        </div>
+        <label for="title">Titre</label>
+            <input type="text" id="title" name="title" required />
+        <label for="category">Catégorie</label>
+        <select id="category" name="category" required>
+            <option value="1">Objets</option>
+            <option value="2">Appartements</option>
+            <option value="3">Hotels & restaurants</option>
+        </select>
+        <div class="modal-separator"/></div>
+        <button type="submit">Valider</button>
+    </form>`;
+}
+// Les catégories doivent être récupérées dynamiquement depuis l'API.

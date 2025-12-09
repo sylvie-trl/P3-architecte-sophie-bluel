@@ -25,7 +25,7 @@ formulaireConnexion.addEventListener("submit", async (event) => {
       );
     } else {
       const data = await reponse.json();
-      sessionStorage.setItem("token", data.token);
+      localStorage.setItem("token", data.token);
       window.location.href = "index.html";
     }
   } catch (error) {

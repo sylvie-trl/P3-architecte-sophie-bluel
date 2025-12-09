@@ -1,8 +1,8 @@
 import { fetchProjets, afficherFiltres } from "./gallery.js";
-import { getModalContent, openModal } from "./modal.js";
+import { openModal } from "./modal.js";
 
 export function initAuthUI() {
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
   if (!token) return;
 
@@ -17,7 +17,7 @@ export function initAuthUI() {
 
   navAuth.addEventListener("click", (event) => {
     event.preventDefault();
-    sessionStorage.removeItem("token");
+    localStorage.removeItem("token");
     window.location.reload();
   });
 
@@ -40,10 +40,7 @@ export function initAuthUI() {
     bouton.addEventListener("click", async () => {
       console.log("je clique sur le bouton modifier");
       const projets = await fetchProjets();
-      const contentHTML = getModalContent(projets);
-      openModal(contentHTML);
-      //   sessionStorage.removeItem("token");
-      //   // window.location.reload(); il faudra lancer la modale à partir de ce bouton
+      openModal(projets);
     });
     btnEdition.appendChild(bouton);
   }
