@@ -265,10 +265,13 @@ button[type="submit"] {
   font-weight: 700;
   color: white;
   background-color: #1d6154;
-  margin: 2em auto;
   width: 180px;
   text-align: center;
   border-radius: 60px;
+}
+
+input[type="submit"] {
+  margin: 2em auto;
 }
 
 footer nav ul {
@@ -330,8 +333,13 @@ button {
 }
 
 #login-section {
-  width: 33%;
-  margin: auto;
+  max-width: 1140px;
+  margin: 50px auto;
+}
+
+#login-form {
+  max-width: 530px;
+  margin: 0 auto;
 }
 
 nav li a {
@@ -385,6 +393,22 @@ nav li a:hover {
   font-style: normal;
 }
 
+#submitBtn {
+  width: 237px;
+  background-color: #a7a7a7;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 60px;
+  cursor: not-allowed;
+}
+
+#submitBtn.enabled {
+  background-color: #1d6154;
+  color: white;
+  cursor: pointer;
+}
+
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -415,6 +439,15 @@ nav li a:hover {
   margin: 0 auto;
   justify-content: center;
   width: 420px;
+}
+
+.modal-return {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border: none;
+  justify-self: left;
+  cursor: pointer;
 }
 
 .modal-close {
@@ -467,7 +500,7 @@ nav li a:hover {
 }
 
 .modal-separator {
-  width: 420px;
+  width: 450px;
   height: 1px;
   background-color: #b3b3b3;
   margin: 40px auto;
@@ -485,7 +518,7 @@ nav li a:hover {
 #add-project-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  /* gap: 20px; */
   align-items: center;
 }
 
@@ -501,9 +534,31 @@ nav li a:hover {
   border-radius: 8px;
 }
 
-/* #add-project-form label {
-  text-align: left;
-} */
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 450px;
+  gap: 10px;
+  margin-top: 10px;
+}
+.form-fields input,
+.form-fields select {
+  height: 51px;
+  border: none;
+  background: #fff;
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.09);
+  margin-bottom: 20px;
+}
+
+.form-fields select {
+  cursor: pointer;
+}
+
+.form-fields select option {
+  font-family: "Work Sans";
+  font-size: 14px;
+}
 
 .custom-file-upload {
   display: flex;

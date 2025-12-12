@@ -45,16 +45,35 @@ export function getModalAddFormContent() {
             </label>
             <input type="file" id="image" name="image" accept="image/png, image/jpg" required />
         </div>
-        <label for="title">Titre</label>
+        <div class="form-fields">
+          <label for="title">Titre</label>
             <input type="text" id="title" name="title" required />
-        <label for="category">Catégorie</label>
-        <select id="category" name="category" required>
-            <option value="1">Objets</option>
-            <option value="2">Appartements</option>
-            <option value="3">Hotels & restaurants</option>
-        </select>
+          <label for="category">Catégorie</label>
+          <select id="category" name="category" required></select>
+        </div>
         <div class="modal-separator"/></div>
-        <button type="submit">Valider</button>
+        <button id="submitBtn" disabled type="submit">Valider</button>
     </form>`;
 }
 // Les catégories doivent être récupérées dynamiquement depuis l'API.
+export async function getCategoryOptions() {
+  const select = document.getElementById("category");
+  if (!select) return;
+
+  // Option vide par défaut
+  select.innerHTML = `
+    <option value="" disabled selected hidden></option>
+  `;
+
+  // Récup categories API
+  const res = await fetch("http://localhost:5678/api/categories");
+  const categories = await res.json();
+
+  // Ajout des options
+  categories.forEach((cat) => {
+    const option = document.createElement("option");
+    option.value = cat.id;
+    option.textContent = cat.name;
+    select.appendChild(option);
+  });
+}
