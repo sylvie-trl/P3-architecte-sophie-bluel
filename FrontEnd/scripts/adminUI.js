@@ -38,7 +38,6 @@ export function initAuthUI() {
     bouton.textContent = "modifier";
     bouton.classList.add("btnEdition");
     bouton.addEventListener("click", async () => {
-      console.log("je clique sur le bouton modifier");
       const projets = await fetchProjets();
       openModal(projets);
     });
