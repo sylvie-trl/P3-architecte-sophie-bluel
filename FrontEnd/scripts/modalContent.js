@@ -1,4 +1,4 @@
-// Galerie
+// Galerie photo dans la modale
 export function getModalContent(projets) {
   let contentHTML = `
     <button class="modal-close">
@@ -18,7 +18,7 @@ export function getModalContent(projets) {
   });
 
   contentHTML += `</div>`;
-  contentHTML += `<div class="modal-separator"/></div>`;
+  contentHTML += `<div class="modal-separator"></div>`;
   contentHTML += `<button id="add-project-btn" class="add-project-btn">Ajouter une photo</button>`;
 
   return contentHTML;
@@ -46,12 +46,13 @@ export function getModalAddFormContent() {
             <input type="file" id="image" name="image" accept="image/png, image/jpg" required />
         </div>
         <div class="form-fields">
-          <label for="title">Titre</label>
+          <label for="title" id=title-label>Titre</label>
             <input type="text" id="title" name="title" required />
           <label for="category">Catégorie</label>
           <select id="category" name="category" required></select>
         </div>
-        <div class="modal-separator"/></div>
+        <div class="modal-separator"></div>
+        <div id="form-message" class="form-message"></div>
         <button id="submitBtn" disabled type="submit">Valider</button>
     </form>`;
 }
