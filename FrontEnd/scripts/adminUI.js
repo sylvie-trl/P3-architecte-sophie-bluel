@@ -1,4 +1,4 @@
-import { fetchProjets, afficherFiltres } from "./gallery.js";
+import { fetchProjets } from "./gallery.js";
 import { openModal } from "./modal.js";
 
 export function initAuthUI() {
@@ -26,10 +26,6 @@ export function initAuthUI() {
   title.classList.add("edition");
 
   // Ajout bouton Edition en mode connecté
-
-  if (!token) {
-    afficherFiltres();
-  }
 
   const btnEdition = document.getElementById("btnEdition");
 

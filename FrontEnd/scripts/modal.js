@@ -1,11 +1,10 @@
-// Ouverture et fermeture de la modale
-
 import { refreshGallery } from "./gallery.js";
 import {
   getModalContent,
   getModalAddFormContent,
   getCategoryOptions,
 } from "./modalContent.js";
+import { deleteWork, addWork } from "./api.js";
 
 export function openModal(projets) {
   const template = document.getElementById("modal-template");
@@ -52,15 +51,7 @@ async function handleDelete(btn) {
   const id = btn.dataset.id;
 
   try {
-    const response = await fetch(`http://localhost:5678/api/works/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
-
-    if (!response.ok) throw new Error("Erreur API");
-
+    await deleteWork(id);
     btn.closest("figure").remove();
     await refreshGallery();
   } catch (err) {
@@ -150,21 +141,10 @@ async function handleSubmit(e, modalContent, projets) {
 
   const form = modalContent.querySelector("#add-project-form");
   const messageBox = modalContent.querySelector("#form-message");
-
   const formData = new FormData(form);
 
   try {
-    const response = await fetch("http://localhost:5678/api/works", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      body: formData,
-    });
-
-    if (!response.ok) throw new Error("Erreur API");
-
-    const newProjet = await response.json();
+    const newProjet = await addWork(formData);
     projets.push(newProjet);
     await refreshGallery();
 
@@ -172,7 +152,6 @@ async function handleSubmit(e, modalContent, projets) {
     messageBox.className = "form-message success";
 
     form.reset();
-
     const preview = modalContent.querySelector(".preview");
     const label = modalContent.querySelector(".custom-file-upload");
     if (preview) preview.remove();

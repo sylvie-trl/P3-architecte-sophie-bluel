@@ -1,9 +1,10 @@
+import { getWorks, getCategories } from "./api.js";
+
 export const token = localStorage.getItem("token");
 
 // Récupération et affichage des projets sur la page d'Accueil
 export async function fetchProjets() {
-  const reponse = await fetch("http://localhost:5678/api/works");
-  return await reponse.json();
+  return await getWorks();
 }
 
 export function afficherProjets(liste) {
@@ -55,8 +56,7 @@ function creerBtnFiltre(categorie, projets) {
 }
 
 export async function afficherFiltres(projets) {
-  const reponseCategories = await fetch("http://localhost:5678/api/categories");
-  const categories = await reponseCategories.json();
+  const categories = await getCategories();
 
   categories.unshift({ id: 0, name: "Tous" });
 
