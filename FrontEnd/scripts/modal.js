@@ -128,7 +128,11 @@ function setupValidation(modalContent) {
       titleInput.value && categorySelect.value && fileInput.files.length > 0;
 
     submitBtn.disabled = !valid;
-    submitBtn.style.backgroundColor = valid ? "#1d6154" : "#ccc";
+    if (valid) {
+      submitBtn.classList.add("enabled");
+    } else {
+      submitBtn.classList.remove("enabled");
+    }
   }
 
   titleInput.addEventListener("input", validate);
@@ -141,6 +145,7 @@ async function handleSubmit(e, modalContent, projets) {
 
   const form = modalContent.querySelector("#add-project-form");
   const messageBox = modalContent.querySelector("#form-message");
+  const submitBtn = modalContent.querySelector("#submitBtn");
   const formData = new FormData(form);
 
   try {
@@ -156,6 +161,8 @@ async function handleSubmit(e, modalContent, projets) {
     const label = modalContent.querySelector(".custom-file-upload");
     if (preview) preview.remove();
     if (label) label.style.display = "flex";
+    submitBtn.disabled = true;
+    submitBtn.classList.remove("enabled");
   } catch (err) {
     console.error(err);
     messageBox.textContent = "Impossible d'ajouter le projet.";

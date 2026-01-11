@@ -407,7 +407,7 @@ nav li a:hover {
   font-style: normal;
 }
 
-#submitBtn {
+#submitBtn:disabled {
   width: 237px;
   background-color: #a7a7a7;
   color: white;
@@ -417,7 +417,7 @@ nav li a:hover {
   cursor: not-allowed;
 }
 
-#submitBtn.enabled {
+#submitBtn:not(:disabled) {
   background-color: #1d6154;
   color: white;
   cursor: pointer;
